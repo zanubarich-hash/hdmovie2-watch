@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: 'Hdmovie2 | Watch Movie Stream Movies and Tv Series Free',
     description: 'Hdmovie2 is your one-stop destination for free movies, TV shows, and web series. Download thousands of titles in HD quality, with unlimited access to the latest blockbusters and trending series. Start your free entertainment journey today! ',
-    url: 'https://hdmovie2-us.netlify.app',
+    url: 'https://hdmovie2-watch.netlify.app/',
     siteName: 'Hdmovie2',
     images: [
       {

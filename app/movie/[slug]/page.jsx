@@ -104,7 +104,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: movieData.title,
       description: movieData.overview || `Detailed information for movie ${movieData.title}`,
-      url: `https://hdmovie2-us.netlify.app/movie/${slug}`,
+      url: `https://hdmovie2-watch.netlify.app//movie/${slug}`,
       siteName: 'Hdmovie2',
       images: [
         {
