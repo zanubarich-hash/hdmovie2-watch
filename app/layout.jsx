@@ -1,3 +1,4 @@
+// app\layout.jsx
 import './globals.css';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -39,11 +40,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-	  <head>
+    <head>
         {/* Tag verifikasi Google Search Console */}
         <meta name="google-site-verification" content="ovyc2n48CimcPYHwfX1oGEJQwWZYyO-9XXpf3LivRuo" />
       </head>
-      <body>
+      <body id="dummybodyid"> {/* TAMBAHKAN ID DI SINI */}
         <AdsterraLayoutWrapper>
           <div className="flex flex-col min-h-screen bg-slate-900">
             <header className="w-full max-w-7xl mx-auto px-4 py-4 sticky top-0 z-50 bg-slate-900 shadow-lg">
