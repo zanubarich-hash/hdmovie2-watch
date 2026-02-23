@@ -2,7 +2,7 @@
 const BASE_URL = 'https://hdmovie2-watch.netlify.app';
 
 export default async function sitemap() {
-  console.log('🎬 Generating dynamic sitemap for WatchTubi...');
+  console.log('🎬 Generating dynamic sitemap for HDMovie2...');
   
   try {
     const [staticUrls, dynamicUrls] = await Promise.all([

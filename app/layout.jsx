@@ -1,16 +1,17 @@
+import { headers } from 'next/headers'; 
 import './globals.css';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import AdsterraLayoutWrapper from '../components/AdsterraLayoutWrapper';
-import AdBanner from '../components/ads/AdBanner'; // ✅ Komponen baru untuk banner
+import AdsterraLayoutWrapper from '../components/layout/AdsterraLayoutWrapper'; 
+import AdBanner from '../components/ads/AdBanner'; 
 
 export const metadata = {
-  title: 'HDMovie2 | Watch Movies, Stream TV Series Free - Complete Movie Database',
-  description: 'HDMovie2 is your ultimate movie database with 10,000+ movies, 5,000+ TV series, actor profiles, genre pages, and yearly archives. Discover, stream, and enjoy cinematic excellence with our comprehensive entertainment platform.',
-  keywords: 'movies, tv series, streaming, movie database, actors, genres, rankings, movie archives',
+  title: 'Watch Movies Online Free | Stream TV Series HD - HDMovie2',
+  description: 'Find where to watch movies & TV series online for free or on Netflix, Disney+, Prime Video. HDMovie2 tracks 10,000+ movies, 5,000+ shows, box office results, actor info, and provides HD streaming guides across all genres (action, horror, romance, anime, drakor).',
+  keywords: 'watch movies, stream TV series, movie database, where to watch, streaming guide, Netflix, Disney+, Prime Video, free movies online, HD streaming, actor profiles, box office results',
   openGraph: {
-    title: 'HDMovie2 | Complete Movie & TV Series Database',
-    description: 'Your ultimate destination for movies, TV series, actor profiles, and streaming information. Explore genres, yearly archives, and top rankings.',
+    title: 'Watch Movies Online Free | Stream TV Series HD - HDMovie2',
+    description: 'Find where to watch movies & TV series online for free or on Netflix, Disney+, Prime Video. Get streaming guides, actor profiles, and genre recommendations.',
     url: 'https://hdmovie2-watch.netlify.app',
     siteName: 'HDMovie2',
     images: [
@@ -18,7 +19,7 @@ export const metadata = {
         url: 'https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg',
         width: 1200,
         height: 630,
-        alt: 'HDMovie2 - Complete Movie Database',
+        alt: 'HDMovie2 - Watch Movies Online Free and Stream TV Series',
       },
     ],
     locale: 'en_US',
@@ -28,8 +29,8 @@ export const metadata = {
     card: 'summary_large_image',
     site: '@WatchStream123',
     creator: '@WatchStream123',
-    title: 'HDMovie2 | Complete Movie & TV Series Database',
-    description: 'Explore 10,000+ movies, 5,000+ TV series, actor profiles, and streaming guides on HDMovie2.',
+    title: 'Watch Movies Online Free | Stream TV Series HD - HDMovie2',
+    description: 'Find where to watch movies & TV series online for free or on Netflix, Disney+, Prime Video. Streaming guides and recommendations.',
     images: ['https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg'],
   },
   // Tambahkan tag meta eksplisit untuk Facebook
@@ -38,44 +39,68 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Unwrapping headers secara async (Standar Next.js 15/16)
+  const headersList = await headers();
+  const countryCode = headersList.get('x-vercel-ip-country') || headersList.get('cf-ipcountry') || 'ID';
+
   return (
     <html lang="en">
-	  <head>
-        {/* Tag verifikasi Google Search Console */}
-        <meta name="google-site-verification" content="4FeYDbTrRuhOcKijQ3SMRYWbmY9z8Fa4bLfoFICtGnw" />
-        {/* Schema.org markup untuk Movie Database */}
+      <head>
+        <meta name="google-site-verification" content="OumItCiajUNfO6kiwPr2i-nueSIhbnT4YRJtUz800bc" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://hdmovie2-watch.netlify.app" />
+        
+        {/* Structured Data untuk SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "MovieDatabase",
+              "@type": "WebSite",
               "name": "HDMovie2",
-              "description": "Complete movie and TV series database with streaming information",
+              "url": "https://hdmovie2-watch.netlify.app",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://hdmovie2-watch.netlify.app/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              },
+              "description": "Find where to watch movies & TV series online for free or on Netflix, Disney+, Prime Video.",
+              "keywords": "watch movies, stream TV series, movie database, where to watch, streaming guide"
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "HDMovie2",
               "url": "https://hdmovie2-watch.netlify.app",
               "logo": "https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg",
+              "description": "Streaming guide and movie database",
               "sameAs": [
-                "https://hdmovie2-watch.netlify.app"
+                "https://twitter.com/WatchStream123",
+                "https://facebook.com/HDMovie2"
               ]
             })
           }}
         />
       </head>
       <body>
-        <AdsterraLayoutWrapper>
+        <AdsterraLayoutWrapper countryCode={countryCode}>
           <div className="flex flex-col min-h-screen bg-slate-900">
             <header className="w-full max-w-7xl mx-auto px-4 py-4 sticky top-0 z-50 bg-slate-900 shadow-lg">
               <Navbar />
             </header>
             
-            {/* ✅ Banner 728x90 di bawah navbar */}
             <div className="w-full bg-slate-900 py-2">
               <div className="max-w-7xl mx-auto px-4 flex justify-center">
                 <AdBanner 
-                  adId="728x90_banner_navbar"
+                  adId="728x90_header"
                   scriptKey="d515224184d1ae0196f3b4c5f105eb07"
-                  height={90}
+                  height={90} 
                   width={728}
                   className="rounded-lg overflow-hidden shadow-lg"
                 />
@@ -87,7 +112,6 @@ export default function RootLayout({ children }) {
             </main>
             
             <footer className="w-full max-w-7xl mx-auto px-4 py-8">
-              {/* Tempatkan div Native Banner di sini, sebelum Footer */}
               <div id="container-ffe26a7a84cd3722c905ac346ea4d0b1"></div>
               <Footer />
             </footer>
